@@ -16,10 +16,19 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('lastName');
+            $table->integer('country_id');
+            $table->integer('state_id');
+            $table->integer('city_id');
+            $table->integer('occupation_id');
+            $table->string('phone');
+            $table->string('cellphone');
+            $table->date('birthday');
+            $table->enum('type', ['admin', 'customer']);
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
