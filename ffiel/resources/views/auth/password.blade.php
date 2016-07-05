@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="padding-top: 70px">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="center">
+                <img src="{{ asset(env('FFIELFULL')) }}" class="responsive-img">
+            </div>
+            <div class="col s12 m12 l8 push-l2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Recordar Contraseña</div>
+                    <div class="panel-heading center"><h4>Recordar Contraseña</h4></div>
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -31,7 +34,7 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                                <div class="col-md-6 col-md-offset-4 center">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-btn fa-envelope"></i> Enviar Link a Correo
                                     </button>

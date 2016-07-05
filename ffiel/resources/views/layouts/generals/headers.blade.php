@@ -15,9 +15,15 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
 <!-- Styles -->
+{{--
 <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('css/semantic/dist/semantic.min.css') }}" rel="stylesheet">
+--}}
+<link href="{{ asset('materialize/css/materialize.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 <link href="{{ asset('css/galleyIndex.css') }}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+<style>
+    .center-btn { text-align: center }
+</style>
 @yield('extra_css')
