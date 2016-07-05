@@ -1,0 +1,24 @@
+{
+    "name": "FFIEL",
+    "description": "FFIEL",
+    "main": "",
+    "authors": [
+    "FFIEL"
+    ],
+        "license": "MIT",
+        "homepage": "http://www.ffiel.com",
+        "moduleType": [],
+        "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "public/bower_components/"
+    ],
+        "dependencies": {
+        "angular": "1.5.0-rc.2",
+            "angularUtils-pagination": "angular-utils-pagination#^0.10.0",
+            "angular-advanced-searchbox": "^2.1.0",
+            "angular-ui-notification": "^0.1.0",
+            "angular-base64-upload": "^0.1.17"
+    }
+}

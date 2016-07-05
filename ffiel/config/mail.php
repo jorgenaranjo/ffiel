@@ -53,9 +53,7 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
-    'from' => ['address' => null, 'name' => null],
-
+    'from' => ['address' => env('MAIL_USERNAME'), 'name' => env('MAIL_NAME')],
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol

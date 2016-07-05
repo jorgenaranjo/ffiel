@@ -10,6 +10,11 @@ Route::get('/', [
     'as' => 'register'
 ]);
 
+Route::get('home', [
+    'uses' => 'HomeController@index',
+    'as'   => 'home'
+]);
+
 Route::get('bienvenido', [
     'uses' => 'HomeController@index',
     'as'   => 'home'
