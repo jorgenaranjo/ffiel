@@ -39,6 +39,16 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
+
+
+    public function is($type){
+        return $this->type === $type or $this->type === 'admin';
+    }
+
+
+
+
+
     protected $hidden = ['password', 'remember_token'];
 
     public function occupation()

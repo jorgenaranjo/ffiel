@@ -8,8 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <title>FFIEL</title>
     @include('layouts.generals.headers')
-    <script src="{{ asset('css/semantic/dist/semantic.min.js') }}"></script>
-
 </head>
 <body>
 @yield('nav')

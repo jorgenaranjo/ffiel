@@ -3,8 +3,10 @@
 @section('content')
     <div class="container" style="padding-top: 70px">
         <div class="row">
-            <div class="center">
-                <img src="{{ asset(env('FFIELFULL')) }}" class="responsive-img">
+            <div class="col s12 m12 l8 push-l2">
+                <div class="center">
+                    <img src="{{ asset(env('FFIELFULL')) }}" class="responsive-img" >
+                </div>
             </div>
             <div class="col s12 m12 l8 push-l2">
                 <div class="panel panel-default">
