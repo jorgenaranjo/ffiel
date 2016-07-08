@@ -1,6 +1,5 @@
 angular
     .module('FFIEL', [
-        'ui.bootstrap',
         'angular-advanced-searchbox',
         'angularUtils.directives.dirPagination',
         'naif.base64',

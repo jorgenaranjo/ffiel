@@ -54,13 +54,13 @@
                         </div>
                         <div class="row">
                             <div class="center">
-                                <a class="btn btn-link orange lighten-1" href="{{ url('/password/email') }}">{{ trans('auth.forgot') }}</a>
+                                <a class="btn btn-link orange lighten-1" href="{{ url('/password/email') }}"><i class="material-icons left">help_outline</i> {{ trans('auth.forgot') }}</a>
                             </div>
                         </div>
                     </form>
                     <div class="row">
                         <div class="center">
-                            <a class="btn btn-link purple darken-3" href="{{ route('register') }}">{{ trans('auth.register') }}</a>
+                            <a class="btn btn-link purple darken-3" href="{{ route('register') }}"><i class="fa fa-btn fa-user"></i> {{ trans('auth.register') }}</a>
                         </div>
                     </div>
                 </div>

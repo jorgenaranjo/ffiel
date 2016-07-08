@@ -19,8 +19,8 @@ class CreateTableWorkshops extends Migration
             $table->integer('quantity');
             $table->string('street');
             $table->string('noExt');
-            $table->integer('city');
-            $table->integer('state');
+            $table->string('city');
+            $table->string('state');
             $table->longText('description');
             $table->string('speaker_name');
             $table->longText('speaker_image');

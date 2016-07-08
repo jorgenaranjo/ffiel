@@ -1,12 +1,49 @@
 @extends('layouts.generals.main_template')
 
-@section('body_page')
+@section('page_title')
+    {{ trans('home.title') }}
+@endsection
+
+@section('homeContent')
     <div class="row">
         <div class="center">
-            <img src="http://placehold.it/300x300">
-            <div class="ui header">We've auto-chosen a profile image for you.</div>
-            <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-            <p>Is it okay to use this photo?</p>
+            <h3> {{ trans('home.title') .' '.Auth::user()->name}} </h3>
+            <br>
+            <div class="row">
+                <div class="slider">
+                    <ul class="slides">
+                        <li>
+                            <img src="http://lorempixel.com/580/250/nature/1"> <!-- random image -->
+                            <div class="caption center-align">
+                                <h3>This is our big Tagline!</h3>
+                                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="http://lorempixel.com/580/250/nature/2"> <!-- random image -->
+                            <div class="caption left-align">
+                                <h3>Left Aligned Caption</h3>
+                                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="http://lorempixel.com/580/250/nature/3"> <!-- random image -->
+                            <div class="caption right-align">
+                                <h3>Right Aligned Caption</h3>
+                                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="http://lorempixel.com/580/250/nature/4"> <!-- random image -->
+                            <div class="caption center-align">
+                                <h3>This is our big Tagline!</h3>
+                                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection

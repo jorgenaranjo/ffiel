@@ -16,7 +16,7 @@
 <div class="container">
     @yield('content')
 </div>
-    @include('layouts.generals.scripts')
+    @include('layouts.generals.scriptsIndex')
 </body>
 
 </html>

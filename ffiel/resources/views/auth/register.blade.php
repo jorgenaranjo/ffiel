@@ -69,12 +69,18 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group center">
-                            <div class="col-md-6 col-md-offset-4">
+                        <div class="row">
+                            <div class="col center s12 l12 m12">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i>{{ trans('auth.register') }}
                                 </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l12 center">
+                                <a href="{{ route('login') }}" class="btn purple darken-1">
+                                    <i class="material-icons left">input</i>{{ trans('auth.login_form') }}
+                                </a>
                             </div>
                         </div>
                     </form>

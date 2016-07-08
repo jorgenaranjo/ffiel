@@ -21,9 +21,14 @@
 <link href="{{ asset('materialize/css/materialize.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 <link href="{{ asset('css/galleyIndex.css') }}" rel="stylesheet">
+
+<link href="{{ asset('bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox.min.css') }}" rel="stylesheet">
+<link href="{{ asset('bower_components/angular-ui-notification/dist/angular-ui-notification.min.css') }}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
-    .center-btn { text-align: center }
+    main {
+        flex: 1 0 auto;
+    }
 </style>
 @yield('extra_css')
