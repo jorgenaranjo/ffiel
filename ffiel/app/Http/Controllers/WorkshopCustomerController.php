@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
+use App\Workshop;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +18,13 @@ class WorkshopCustomerController extends Controller
      */
     public function index()
     {
-        //
+        return view('templates.customer.workshop.index');
+    }
+
+    public function getAllWorkshops(){
+        $event_id = Event::where('active', true)->orderBy('id', 'desc')->first();
+        Event::find($event_id->id)->workshops()->where('active', true);
+        return Event::find($event_id->id)->workshops()->where('active', true)->get();
     }
 
     /**

@@ -32,8 +32,9 @@
 <!-- If is Customer -->
 @if(Auth::user()->type == 'customer')
     <!-- Factories -->
-
+    <script src="{{ asset('js/scripts/services/workshop/workshopCustomerServices.js') }}"></script>
     <!-- Controllers -->
+    <script src="{{ asset('js/scripts/controllers/workshop/workshopCustomerController.js') }}"></script>
 @endif
 
 

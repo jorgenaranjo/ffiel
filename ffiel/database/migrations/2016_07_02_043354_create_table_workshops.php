@@ -24,10 +24,12 @@ class CreateTableWorkshops extends Migration
             $table->longText('description');
             $table->string('speaker_name');
             $table->longText('speaker_image');
+            $table->string('speaker_occupation');
             $table->longText('image');
             $table->dateTime('endDate');
             $table->decimal('price',10,2);
             $table->string('code');
+            $table->integer('event_id');
             $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();

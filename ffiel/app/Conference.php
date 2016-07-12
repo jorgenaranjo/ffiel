@@ -19,5 +19,10 @@ class Conference extends Model
     {
         return $this->belongsToMany('App\User');
     }
+
+    public function event()
+    {
+        return $this->belongsTo('App\Event');
+    }
 }
 

@@ -9,4 +9,8 @@
 
 return [
     'title' => 'Workshops',
+    'quantity' => 'Quantity',
+    'startDate' => 'Start Date',
+    'endDate' => 'End Date',
+    'price' => 'Price'
 ];
