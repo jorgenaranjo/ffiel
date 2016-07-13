@@ -18,42 +18,40 @@
                     </div>
                 </div>
             </div>
-            <div class="card-action right-align">
-                <a href="#"><i class="material-icons">shopping_cart</i> Comprar</a>
+            <div class="card-action center">
+                <a data-ng-click="paymentModal(workshop)" class="waves-effect waves-light btn orange darken-2"><i class="material-icons">camera</i> Inscribete</a>
             </div>
             <div class="card-reveal">
                 <h4 class="grey-text text-darken-4">@{{ workshop.name }}<i class="material-icons right">close</i></h4>
                 <div class="row">
                     <div class="col s3 m3 l2">
                         <img class="activator img-responsive circle" ng-src="@{{ imageMIME(workshop.speaker_image) }}" alt="@{{ workshop.name }}"
-                             style="max-width: 70px; max-height: 70px">
+                             style="max-width: 60px; max-height: 60px">
                     </div>
                     <div class="col s9 m9 l10">
                         <h5 style="color: #F4842B;">@{{ workshop.speaker_name }}</h5>
                         <h6 style="color: #68266D;">@{{ workshop.speaker_occupation }}</h6>
                     </div>
                 </div>
-
-                <p>@{{ workshop.description }}</p>
-
                 <div class="row">
                     <table class="centered">
                         <thead>
-                            <tr>
-                                <th width="33.3%"><i class="material-icons">person</i>{{ trans('workshop.quantity') }}</th>
-                                <th width="33.3%"><i class="material-icons">date_range</i>{{ trans('workshop.startDate') }}</th>
-                                <th width="33.3%"><i class="material-icons">date_range</i>{{ trans('workshop.endDate') }}</th>
-                            </tr>
+                        <tr>
+                            <th width="33.3%"><i class="material-icons">person</i>{{ trans('workshop.quantity') }}</th>
+                            <th width="33.3%"><i class="material-icons">date_range</i>{{ trans('workshop.startDate') }}</th>
+                            <th width="33.3%"><i class="material-icons">date_range</i>{{ trans('workshop.endDate') }}</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>@{{ workshop.quantity }}</td>
-                                <td>@{{ workshop.startDate }}</td>
-                                <td>@{{ workshop.endDate }}</td>
-                            </tr>
+                        <tr>
+                            <td>@{{ workshop.quantity }}</td>
+                            <td>@{{ workshop.startDate }}</td>
+                            <td>@{{ workshop.endDate }}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
+                <p>@{{ workshop.description }}</p>
             </div>
         </div>
     </div>

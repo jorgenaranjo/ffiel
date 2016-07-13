@@ -33,13 +33,18 @@
 @if(Auth::user()->type == 'customer')
     <!-- Factories -->
     <script src="{{ asset('js/scripts/services/workshop/workshopCustomerServices.js') }}"></script>
+    <script src="{{ asset('js/scripts/services/paypal/paypalServices.js') }}"></script>
     <!-- Controllers -->
     <script src="{{ asset('js/scripts/controllers/workshop/workshopCustomerController.js') }}"></script>
 @endif
 
 
 <script>
-    $(".button-collapse").sideNav();
-    $('.slider').slider();
+    $(document).ready(function() {
+        $('select').material_select();
+        $(".button-collapse").sideNav();
+        $('.slider').slider();
+    });
+
 
 </script>

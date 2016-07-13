@@ -35,4 +35,5 @@
             </dir-pagination-controls>
         </div>
     </div>
+    @include('templates.customer.workshop.partials.selectPaymentMethodModal')
 @endsection
