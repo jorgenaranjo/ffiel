@@ -40,6 +40,19 @@ angular.module('FFIEL')
         $scope.postPaymentCreditCard = function(workshop){
             paypalServices.postPaymentCreditCard(workshop)
                 .success(function(data){
+                    console.log(data);
+                    $('#paymentCreditCard').closeModal();
+                    Notification.success({message: 'Creado correctamente.', delay: 5000});
+                })
+                .error(function(error){
+                    console.log(error);
+                });
+        }
+
+        $scope.postPaymentPaypalAccount = function(workshop){
+            paypalServices.postPaymentPaypalAccount(workshop)
+                .success(function(data){
+                    console.log(data);
                     $('#paymentCreditCard').closeModal();
                     Notification.success({message: 'Creado correctamente.', delay: 5000});
                 })

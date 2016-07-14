@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col s12 m6 l6" data-dir-paginate="workshop in workshops | orderBy:sortKey:reverse | filter:searchInput |itemsPerPage:8">
-        <div class="card large">
+        <div class="card">
 
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator img-responsive" ng-src="@{{ imageMIME(workshop.image) }}" alt="@{{ workshop.name }}">
@@ -22,7 +22,7 @@
                 <a data-ng-click="paymentModal(workshop)" class="waves-effect waves-light btn orange darken-2"><i class="material-icons">camera</i> Inscribete</a>
             </div>
             <div class="card-reveal">
-                <h4 class="grey-text text-darken-4">@{{ workshop.name }}<i class="material-icons right">close</i></h4>
+                <h4 class="card-title grey-text text-darken-4">@{{ workshop.name }}<i class="material-icons right">close</i></h4>
                 <div class="row">
                     <div class="col s3 m3 l2">
                         <img class="activator img-responsive circle" ng-src="@{{ imageMIME(workshop.speaker_image) }}" alt="@{{ workshop.name }}"

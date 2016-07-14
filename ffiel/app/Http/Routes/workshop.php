@@ -19,7 +19,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['auth', 'admin']], function
 
 // CUSTOMER
 // Views routes
-Route::group(['middleware' => ['auth', 'customer'], 'as' => 'workshops'], function () {
+Route::group(['middleware' => ['auth', 'customer'], 'as' => 'workshopsCustomer'], function () {
     Route::get('talleres/', ['uses' => 'WorkshopCustomerController@index', 'as'  => '.index']);
     //Route::post('talleres/crear', ['uses' => 'WorkshopCustomerController@create', 'as'  => '.create']);
     //Route::get('talleres/editar/{id}', ['uses' => 'WorkshopCustomerController@edit', 'as'  => '.edit']);

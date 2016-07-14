@@ -4,7 +4,7 @@
         <br>
         <div class="row">
             <div class="col m6 l6 center">
-                <a>
+                <a data-ng-click="postPaymentPaypalAccount(workshop)">
                     <img src="https://www.paypalobjects.com/es_ES/i/bnr/bnr_shopNowUsing_150x40.gif" class="img-responsive">
                 </a>
             </div>
@@ -31,7 +31,7 @@
                 <label>Tipo de tarjeta</label>
             </div>
             <div class="input-field col s12">
-                <input data-ng-model="workshop.cc_number" id="cc_number" name="cc_number" type="number" class="validate"
+                <input data-ng-model="workshop.cc_number" id="cc_number" name="cc_number" type="text" class="validate"
                        maxlength="16">
                 <label for="cc_number">Número de tarjeta</label>
             </div>

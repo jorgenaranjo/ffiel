@@ -14,6 +14,12 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['auth', 'customer']], funct
         'uses' => 'PaypalController@postPaymentCreditCard',
     ));
 
+    Route::put('paymentCP', array(
+        'as' => 'paymentCP',
+        'uses' => 'PaypalController@postPaymentPaypalAccount',
+    ));
+
+
 });
 
 Route::group(['middleware' => ['auth', 'customer']], function () {

@@ -13,7 +13,7 @@ class Payment extends Model
     protected $table = 'payments';
 
     protected $fillable = ['workshop_id', 'user_id', 'date', 'transaction_number',
-            'amount', 'payment_method'];
+            'amount', 'payment_method', 'creditCardNumber'];
 
 
     public function user()

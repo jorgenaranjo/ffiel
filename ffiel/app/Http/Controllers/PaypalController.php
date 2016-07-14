@@ -4,6 +4,7 @@ use App\Http\Requests;
 
 use App\Payment as PaymenFFIEL;
 use App\User;
+use App\Workshop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;
@@ -65,7 +66,7 @@ class PaypalController extends Controller {
         $item1 = new Item();
         $item1->setName($request->get('name'))
             ->setDescription($request->get('name'))
-            ->setCurrency('MXN')
+            ->setCurrency('USD')
             ->setQuantity(1)
             ->setTax(0.0)
             ->setPrice($request->get('price'));
@@ -74,11 +75,11 @@ class PaypalController extends Controller {
         $itemList->setItems(array($item1));
 
         $details = new Details();
-        $details->setTax(0)
+        $details->setTax(0.0)
             ->setSubtotal($request->get('price'));
 
         $amount = new Amount();
-        $amount->setCurrency('MXN')
+        $amount->setCurrency('USD')
             ->setTotal($request->get('price'))
             ->setDetails($details);
 
@@ -88,85 +89,69 @@ class PaypalController extends Controller {
             ->setDescription('FFIEL')
             ->setInvoiceNumber(uniqid());
 
-
-        $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(\URL::route('payment.status'))
-            ->setCancelUrl(\URL::route('payment.status'));
-
         $payment = new Payment();
         $payment->setIntent('sale')
             ->setPayer($payer)
-            ->setRedirectUrls($redirect_urls)
             ->setTransactions(array($transaction));
-
-        $data_workshop = [
-            'user_id'=> \Auth::user()->id,
-            'workshop_id' => $request->get('id')
-        ];
-
-        Session::put('paypal_data', $data_workshop);
 
         try {
             $payment->create($this->_api_context);
-        } catch (\PayPal\Exception\PPConnectionException $ex) {
+
+            PaymenFFIEL::create([
+                'workshop_id' => $request->get('id'),
+                'user_id' => \Auth::user()->id,
+                'date' => $payment->getUpdateTime(),
+                'transaction_number' => $payment->getId(),
+                'amount' => $request->get('price'),
+                'payment_method' => 'Tarjeta de credito',
+                'creditCardNumber' => $payment->getPayer()->getFundingInstruments()[0]->credit_card->number
+            ]);
+
+
+        } catch (\PayPal\Exception\PayPalConnectionException $ex) {
             if (Config::get('app.debug')) {
                 echo "Exception: " . $ex->getMessage() . PHP_EOL;
-                $err_data = json_decode($ex->getData(), true);
-                exit;
+                echo $ex->getCode(); // Prints the Error Code
+                echo $ex->getData(); // Prints the detailed error message
+                die($ex);
             } else {
                 die('Some error occurred, sorry for inconvenient');
             }
         }
 
-        foreach($payment->getLinks() as $link) {
-            if($link->getRel() == 'approval_url') {
-                $redirect_url = $link->getHref();
-                break;
-            }
-        }
-
-        // add payment ID to session
-        Session::put('paypal_payment_id', $payment->getId());
-
-        if(isset($redirect_url)) {
-            // redirect to paypal
-            return Redirect::away($redirect_url);
-        }
-
-        return Redirect::route('original.route')
-            ->with('error', 'Unknown error occurred');
+        return $payment;
     }
 
-    /*public function postPayment(Request $request){
+    public function postPaymentPaypalAccount(Request $request){
 
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
-        $iva=0.16;
-        $user_type_data = UserType::findOrFail($request->get('user_type_id'));
 
         $item_1 = new Item();
-        $item_1->setName($user_type_data->name) // item name
-        ->setCurrency('MXN')
+        $item_1->setName($request->get('name'))
+            ->setDescription($request->get('name'))
+            ->setCurrency('MXN')
             ->setQuantity(1)
-            ->setPrice($user_type_data->cost); // unit price
+            ->setTax(0.0)
+            ->setPrice(floatval($request->get('price')));
 
         // add item to list
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
 
         $details = new Details();
-        $details->setTax($user_type_data->cost*$iva)
-            ->setSubtotal($user_type_data->cost);
+        $details->setTax(0.0)
+            ->setSubtotal($request->get('price'));
 
         $amount = new Amount();
         $amount->setCurrency('MXN')
-            ->setTotal($user_type_data->cost*($iva+1))
+            ->setTotal(floatval($request->get('price')))
             ->setDetails($details);
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($item_list)
-            ->setDescription('Ocúpate México');
+            ->setDescription('FFIEL');
 
 
         $redirect_urls = new RedirectUrls();
@@ -179,24 +164,20 @@ class PaypalController extends Controller {
             ->setRedirectUrls($redirect_urls)
             ->setTransactions(array($transaction));
 
-        $data_user = [
-            'name'=> $request->get('name'),
-            'lastName'=> $request->get('lastName'),
-            'email' => $request->get('email'),
-            'password' => $request->get('password'),
-            'user_type_id' => $request->get('user_type_id'),
-            'code' => $request->get('code'),
-            'token' => $request->get('token')
+        $workshopData = [
+            'workshop_id' => $request->get('id'),
+            'user_id' => \Auth::user()->id,
         ];
-        Session::put('paypal_data_user', $data_user);
+        Session::put('paypal_data', $workshopData);
 
         try {
             $payment->create($this->_api_context);
-        } catch (\PayPal\Exception\PPConnectionException $ex) {
-            if (\Config::get('app.debug')) {
+        } catch (\PayPal\Exception\PayPalConnectionException $ex) {
+            if (Config::get('app.debug')) {
                 echo "Exception: " . $ex->getMessage() . PHP_EOL;
-                $err_data = json_decode($ex->getData(), true);
-                exit;
+                echo $ex->getCode(); // Prints the Error Code
+                echo $ex->getData(); // Prints the detailed error message
+                die($ex);
             } else {
                 die('Some error occurred, sorry for inconvenient');
             }
@@ -220,7 +201,6 @@ class PaypalController extends Controller {
         return Redirect::route('original.route')
             ->with('error', 'Unknown error occurred');
     }
-    */
 
     public function getPaymentStatus(Request $request)
     {
@@ -248,19 +228,21 @@ class PaypalController extends Controller {
         //Execute the payment
         $result = $payment->execute($execution, $this->_api_context);
         if ($result->getState() == 'approved') { // payment made
-            $user = User::create(Session::get('paypal_data_user'));
-            $user->token = $user->setTokenUser();
-            $user->save();
-            $payment_method = 1;
-            PaymentUser::create([
+
+            $workshop = Workshop::findOrFail(Session::get('paypal_data')['workshop_id']);
+            $user = User::findOrFail(Session::get('paypal_data')['user_id']);
+
+            PaymenFFIEL::create([
+                'workshop_id' => $workshop->id,
                 'user_id' => $user->id,
-                'transaction_number' => $payment_id,
-                'amount' => $user->user_type->cost,
-                'date' => date('Y-m-d H:i:s'),
-                'user_type_id'=> $user->user_type->id,
-                'payment_method_id'=> $payment_method,
+                'date' => $result->getUpdateTime(),
+                'transaction_number' => $result->getId(),
+                'amount' => $workshop->price,
+                'payment_method' => 'Cuenta Paypal',
+               // 'creditCardNumber' => $result->getPayer()->getFundingInstruments()[0]->credit_card->number
             ]);
-            return redirect()->route('emailValidation', $user->id);
+
+            return redirect()->route('home');
         }
         return redirect('/')->with('error', 'Payment failed');
     }

@@ -20,6 +20,7 @@ class CreateTablePayments extends Migration
             $table->string('transaction_number');
             $table->decimal('amount', 10, 2);
             $table->string('payment_method');
+            $table->string('creditCardNumber');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -6,15 +6,9 @@ angular.module('FFIEL')
         return{
             postPaymentCreditCard : function(workshop){
                 return $http.post(HOST+'api/v1/paymentCC', workshop)
+            },
+            postPaymentPaypalAccount : function(workshop){
+                return $http.put(HOST+'api/v1/paymentCP', workshop)
             }
-            /*save : function(user){
-             return $http.post(HOST+'api/v1/users', user)
-             },
-             update : function(user){
-             return $http.put(HOST+'api/v1/users', user)
-             },
-             delete : function(user){
-             return $http.delete(HOST+'api/v1/users/'+user.id)
-             }*/
         }
     });
