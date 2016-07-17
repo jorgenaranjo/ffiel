@@ -55,7 +55,7 @@ angular.module('FFIEL')
                     console.log(data);
                     $window.location.href = data;
                     $('#paymentCreditCard').closeModal();
-                    Notification.success({message: 'Creado correctamente.', delay: 5000});
+                    Notification.success({message: 'Redireccionando a paypal', delay: 5000});
                 })
                 .error(function(error){
                     console.log(error);

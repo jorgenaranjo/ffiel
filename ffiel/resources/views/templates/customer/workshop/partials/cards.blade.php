@@ -5,7 +5,7 @@
                 <img class="activator img-responsive" ng-src="@{{ imageMIME(workshop.image) }}" alt="@{{ workshop.name }}">
             </div>
             <div class="card-content">
-                <h5 class="activator grey-text text-darken-4">@{{ workshop.name }}<i class="material-icons right">more_vert</i></h5>
+                <h5 class="activator grey-text text-darken-4"><span ng-bind-html='toTrustedHTML( workshop.name )'></span><i class="material-icons right">more_vert</i></h5>
                 <div class="row">
                     <div class="col s3 m3 l2">
                         <img class="activator img-responsive circle" ng-src="@{{ imageMIME(workshop.speaker_image) }}" alt="@{{ workshop.name }}"
@@ -13,7 +13,7 @@
                     </div>
                     <div class="col s9 m9 l10">
                         <h5 style="color: #F4842B;"><span ng-bind-html='toTrustedHTML( workshop.speaker_name )'></span></h5>
-                        <h6 style="color: #68266D;">@{{ workshop.speaker_occupation }}</h6>
+                        <h6 style="color: #68266D;"><span ng-bind-html='toTrustedHTML( workshop.speaker_occupation )'></span></h6>
                     </div>
                 </div>
             </div>

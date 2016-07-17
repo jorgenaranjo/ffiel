@@ -194,6 +194,7 @@ class PaypalController extends Controller {
         Session::put('paypal_payment_id', $payment->getId());
 
         if(isset($redirect_url)) {
+            // redirect to paypal
             return $redirect_url;
         }
 
@@ -230,20 +231,21 @@ class PaypalController extends Controller {
 
             $workshop = Workshop::findOrFail(Session::get('paypal_data')['workshop_id']);
             $user = User::findOrFail(Session::get('paypal_data')['user_id']);
-
-            PaymenFFIEL::create([
+            $payment = PaymenFFIEL::create([
                 'workshop_id' => $workshop->id,
                 'user_id' => $user->id,
                 'date' => $result->getUpdateTime(),
                 'transaction_number' => $result->getId(),
                 'amount' => $workshop->price,
                 'payment_method' => 'Cuenta Paypal',
-               // 'creditCardNumber' => $result->getPayer()->getFundingInstruments()[0]->credit_card->number
+                'creditCardNumber' => $result->getCart()
             ]);
 
+            Session::flash('success', $user->name . ' ha sido registrado en el curso '.$workshop->name.'.');
             return redirect()->route('home');
         }
-        return redirect('/')->with('error', 'Payment failed');
+
+        return redirect('/')->with('error', 'La transacción no se pudo realizar con exito, verifica tu información de tu cuenta paypal.');
     }
 
 }
