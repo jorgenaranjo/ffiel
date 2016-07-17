@@ -49,5 +49,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'admin' => \App\Http\Middleware\IsAdmin::class,
         'customer' => \App\Http\Middleware\IsCustomer::class,
+        'cors' => \App\Http\Middleware\Cors::class,
     ];
 }

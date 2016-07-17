@@ -194,8 +194,7 @@ class PaypalController extends Controller {
         Session::put('paypal_payment_id', $payment->getId());
 
         if(isset($redirect_url)) {
-            // redirect to paypal
-            return Redirect::away($redirect_url);
+            return $redirect_url;
         }
 
         return Redirect::route('original.route')

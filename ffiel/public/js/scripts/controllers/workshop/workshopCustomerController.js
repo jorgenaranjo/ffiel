@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('FFIEL')
-    .controller('WorkshopsController', function ($scope, workshopCustomerServices, Notification, paypalServices) {
+    .controller('WorkshopsController', function ($scope, workshopCustomerServices, Notification, paypalServices, $window) {
         $scope.workshop = {};
         $scope.workshops = [];
 
@@ -53,6 +53,7 @@ angular.module('FFIEL')
             paypalServices.postPaymentPaypalAccount(workshop)
                 .success(function(data){
                     console.log(data);
+                    $window.location.href = data;
                     $('#paymentCreditCard').closeModal();
                     Notification.success({message: 'Creado correctamente.', delay: 5000});
                 })

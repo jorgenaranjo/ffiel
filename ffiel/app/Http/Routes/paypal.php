@@ -12,12 +12,12 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['auth', 'customer']], funct
     Route::post('paymentCC', array(
         'as' => 'paymentCC',
         'uses' => 'PaypalController@postPaymentCreditCard',
-    ));
+    ))->middleware('cors');
 
     Route::put('paymentCP', array(
         'as' => 'paymentCP',
         'uses' => 'PaypalController@postPaymentPaypalAccount',
-    ));
+    ))->middleware('cors');
 
 
 });

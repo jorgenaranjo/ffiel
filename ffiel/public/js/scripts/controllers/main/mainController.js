@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('FFIEL')
-.controller('MainController', function ($scope, $location, Notification) {
+.controller('MainController', function ($scope, $location, Notification, $sce) {
     $scope.sort = function(keyname){
         $scope.sortKey = keyname;   //set the sortKey to the param passed
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
@@ -23,5 +23,9 @@ angular.module('FFIEL')
         }catch(e){
             return "";
         }
+    }
+
+    $scope.toTrustedHTML = function( html ){
+        return $sce.trustAsHtml( html );
     }
 });

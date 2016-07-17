@@ -11,6 +11,8 @@
 <script src="{{ asset('bower_components/angularUtils-pagination/dirPagination.js') }}"></script>
 <script src="{{ asset('bower_components/angular-ui-notification/dist/angular-ui-notification.min.js') }}"></script>
 <script src="{{ asset('bower_components/angular-base64-upload/dist/angular-base64-upload.js') }}"></script>
+<script src="{{ asset('bower_components/angular-sanitize/angular-sanitize.js') }}"></script>
+
 
 <!-- Angular Base -->
 <script src="{{ asset('js/scripts/app.js') }}"></script>
