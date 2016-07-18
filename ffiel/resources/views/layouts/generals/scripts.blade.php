@@ -45,7 +45,7 @@
     $(document).ready(function() {
         $('select').material_select();
         $(".button-collapse").sideNav();
-        $('.slider').slider();
+        $('.slider').slider({height: 700});
     });
 
 

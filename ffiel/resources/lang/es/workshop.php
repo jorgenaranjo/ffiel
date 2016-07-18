@@ -9,8 +9,9 @@
 
 return [
     'title' => 'Talleres',
-    'quantity' => 'Cantidad',
+    'quantity' => 'Asistentes',
     'startDate' => 'Fecha Inicio',
     'endDate' => 'Fecha Fin',
-    'price' => 'Precio'
+    'price' => 'Precio',
+    'date' => 'Fecha'
 ];

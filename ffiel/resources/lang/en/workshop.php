@@ -12,5 +12,6 @@ return [
     'quantity' => 'Quantity',
     'startDate' => 'Start Date',
     'endDate' => 'End Date',
-    'price' => 'Price'
+    'price' => 'Price',
+    'date' => 'Date'
 ];
