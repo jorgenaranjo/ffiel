@@ -8,9 +8,18 @@
 
 return array(
 
+    //Pruebas
+    'client_id' => 'AbTxwKeqgiuqwecEd-DVAQb4gwyv56ja5fiwg6EJOmlACMr0s23f8HdLTY0Iqetz6K2ErXjGz6OcgwhM',
+    'secret' => 'ECstXwJrxl18jnoIzSXvGcRNNYGRV9F-7RCSElPehGIa2wVMNCL6ZS921TUp8Mqm-XzQVEL87xvJmytZ',
+
+    //Produccion
+
+    //'client_id' => 'AbTxwKeqgiuqwecEd-DVAQb4gwyv56ja5fiwg6EJOmlACMr0s23f8HdLTY0Iqetz6K2ErXjGz6OcgwhM',
+    //'secret' => 'EAwnAxjh_G363ht4h3JodPSUsufUPOywF_8sCZatCf7rsSyvT_KdkcUmOBb0wfU-zXAsYRr-Xs0ExvCJ',
+
+
     // set your paypal credential
-    'client_id' => 'ARsnHDdkGU6IqXGgUbc-D3AOJuDWEwXBfEQmMd9euBorpvAPmazYNlEhoY5XecaWqN3EW_LdW0aMs1Ak',
-    'secret' => 'EHdCajQWv4XYGzhEe-iFkrn16Sx9Eoii-f8hRZQEtnjAVvrnHfS7EUaetK_HTpOu_Ap8_KaertaEi_my',
+
 
     /**
      * SDK configuration

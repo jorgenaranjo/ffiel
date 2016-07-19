@@ -66,7 +66,7 @@ class PaypalController extends Controller {
         $item1 = new Item();
         $item1->setName($request->get('name'))
             ->setDescription($request->get('name'))
-            ->setCurrency('USD')
+            ->setCurrency('MXN')
             ->setQuantity(1)
             ->setTax(0.0)
             ->setPrice($request->get('price'));
@@ -79,7 +79,7 @@ class PaypalController extends Controller {
             ->setSubtotal($request->get('price'));
 
         $amount = new Amount();
-        $amount->setCurrency('USD')
+        $amount->setCurrency('MXN')
             ->setTotal($request->get('price'))
             ->setDetails($details);
 
