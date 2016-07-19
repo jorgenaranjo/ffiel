@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\User;
 use App\Workshop;
 use Illuminate\Http\Request;
 
@@ -23,8 +24,8 @@ class WorkshopCustomerController extends Controller
 
     public function getAllWorkshops(){
         $event_id = Event::where('active', true)->orderBy('id', 'desc')->first();
-        Event::find($event_id->id)->workshops()->where('active', true);
-        return Event::find($event_id->id)->workshops()->where('active', true)->get();
+        $workshops_by_user = User::find(\Auth::user()->id)->workshops()->where('event_id', $event_id->id)->lists('workshops.id');
+        return Event::find($event_id->id)->workshops()->where('active', true)->whereNotIn('id', $workshops_by_user)->get();
     }
 
     /**

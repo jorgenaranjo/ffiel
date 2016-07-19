@@ -19,7 +19,7 @@
 <script src="{{ asset('js/scripts/controllers/main/mainController.js') }}"></script>
 <script src="{{ asset('js/scripts/services/main/mainFactories.js') }}"></script>
 <script src="{{ asset('js/scripts/filters/filters.js') }}"></script>
-
+<script src="{{ asset('js/scripts/directives/directives.js') }}"></script>
 
 
 <!-- If is Admin -->

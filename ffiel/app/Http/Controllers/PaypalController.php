@@ -107,16 +107,15 @@ class PaypalController extends Controller {
                 'creditCardNumber' => $payment->getPayer()->getFundingInstruments()[0]->credit_card->number
             ]);
 
+            $now = date('Y-m-d H:i:s');
+            \DB::table('user_workshop')->insert([
+                'user_id' => \Auth::user()->id,
+                'workshop_id' => $request->get('id'),
+                'created_at' => $now
+            ]);
 
         } catch (\PayPal\Exception\PayPalConnectionException $ex) {
-            if (Config::get('app.debug')) {
-                echo "Exception: " . $ex->getMessage() . PHP_EOL;
-                echo $ex->getCode(); // Prints the Error Code
-                echo $ex->getData(); // Prints the detailed error message
-                die($ex);
-            } else {
-                die('Some error occurred, sorry for inconvenient');
-            }
+            return \Response::json(['error' => "Ha ocurrido un error al intentar procesar el pago con tu tarjeta de cr&eacute;dito, por favor valida que los datos sean correctos."], 500);
         }
 
         return $payment;
@@ -239,6 +238,13 @@ class PaypalController extends Controller {
                 'amount' => $workshop->price,
                 'payment_method' => 'Cuenta Paypal',
                 'creditCardNumber' => $result->getCart()
+            ]);
+
+            $now = date('Y-m-d H:i:s');
+            \DB::table('user_workshop')->insert([
+                'user_id' => $user->id,
+                'workshop_id' => $workshop->id,
+                'created_at' => $now
             ]);
 
             Session::flash('success', $user->name . ' ha sido registrado en el curso '.$workshop->name.'.');

@@ -9,9 +9,12 @@ angular.module('FFIEL')
         $scope.workshop = {};
         $scope.workshops = [];
 
+        $scope.entranferencia = false;
+        $scope.loading = true;
         workshopCustomerServices.getAllWorkshop()
             .success(function(data){
                 $scope.workshops=data;
+                $scope.loading = false;
             })
             .error(function(error){
                 Notification.error(
@@ -20,6 +23,7 @@ angular.module('FFIEL')
                         title: 'Error al cargando información',
                         delay: 5000
                     });
+                $scope.loading = false;
             });
 
         $scope.paymentModal = function(workshop){
@@ -38,14 +42,29 @@ angular.module('FFIEL')
         }
 
         $scope.postPaymentCreditCard = function(workshop){
+            $scope.entranferencia = true;
             paypalServices.postPaymentCreditCard(workshop)
                 .success(function(data){
-                    console.log(data);
+                    $scope.tranferencia = data;
                     $('#paymentCreditCard').closeModal();
-                    Notification.success({message: 'Creado correctamente.', delay: 5000});
+                    $('#tdcExitosa').openModal();
+                    Notification.success({message: 'Transacci&oacute;n exitosa.', delay: 5000});
+                    $scope.cc_type ='';
+                    $scope.cc_number ='';
+                    $scope.cc_month ='';
+                    $scope.cc_year ='';
+                    $scope.cc_ccv ='';
+                    $scope.cc_name ='';
+                    $scope.cc_lastName ='';
+
                 })
                 .error(function(error){
-                    console.log(error);
+                    $scope.entranferencia = false;
+                    Notification.error({
+                        message: '<b>Error:</b> </br>'+error.error,
+                        title: '<b>Error con transacci&oacute;n</b>',
+                        delay: 20000
+                    });
                 });
         }
 
@@ -62,6 +81,11 @@ angular.module('FFIEL')
                 });
         }
 
+        $scope.submitForm = function(isValid) {
+            if (isValid) {
+                $scope.postPaymentCreditCard($scope.workshop);
+            }
+        };
 
     });
 

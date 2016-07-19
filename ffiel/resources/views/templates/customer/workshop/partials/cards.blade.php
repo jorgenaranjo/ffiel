@@ -2,7 +2,7 @@
     <div class="col s12 m12 l6" data-dir-paginate="workshop in workshops | orderBy:sortKey:reverse | filter:searchInput |itemsPerPage:8">
         <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator img-responsive" ng-src="@{{ imageMIME(workshop.image) }}" alt="@{{ workshop.name }}">
+                <img class="activator" ng-src="@{{ imageMIME(workshop.image) }}" alt="@{{ workshop.name }}">
             </div>
             <div class="card-content">
                 <div class="row">
@@ -28,10 +28,8 @@
                                 <h3 class="light center" style="color: #68266D;">$ @{{ workshop.price }}</h3>
                             </div>
                         </div>
-
                     </div>
                     <h6 class="activator right-align" style="color: #F4842B;">M&aacute;s informaci&oacute;n<i class="material-icons right">more_vert</i></h6>
-
                 </div>
             </div>
             <div class="card-action center">
