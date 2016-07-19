@@ -28,6 +28,27 @@ class WorkshopCustomerController extends Controller
         return Event::find($event_id->id)->workshops()->where('active', true)->whereNotIn('id', $workshops_by_user)->get();
     }
 
+
+    public function indexMyWorkshops()
+    {
+        return view('templates.customer.myWorkshop.index');
+    }
+
+    public function getMyWorkshops(){
+        $event_id = Event::where('active', true)->orderBy('id', 'desc')->first();
+        $workshops_by_user = User::find(\Auth::user()->id)->workshops()->where('event_id', $event_id->id)->get();
+        return $workshops_by_user;
+    }
+
+
+    public function createPDFWorkshop($workshopI_id){
+        $workshop = Workshop::find($workshopI_id);
+        $user = User::find(\Auth::user()->id);
+        $view =  \View::make('templates.pdf.workshopCustomer', compact('workshop', 'user'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('templates.pdf.workshopCustomer');
+    }
     /**
      * Show the form for creating a new resource.
      *

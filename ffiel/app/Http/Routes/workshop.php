@@ -14,6 +14,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['auth', 'admin']], function
     Route::put('workshops', 'WorkshopAdminController@update');
     Route::delete('workshops/{id}', 'WorkshopAdminController@destroy');
     Route::get('workshops', 'WorkshopAdminController@getAllWorkshops');
+
 });
 
 
@@ -21,6 +22,8 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['auth', 'admin']], function
 // Views routes
 Route::group(['middleware' => ['auth', 'customer'], 'as' => 'workshopsCustomer'], function () {
     Route::get('talleres/', ['uses' => 'WorkshopCustomerController@index', 'as'  => '.index']);
+    Route::get('mistalleres/', ['uses' => 'WorkshopCustomerController@indexMyWorkshops', 'as'  => '.indexMyWorkshops']);
+
     //Route::post('talleres/crear', ['uses' => 'WorkshopCustomerController@create', 'as'  => '.create']);
     //Route::get('talleres/editar/{id}', ['uses' => 'WorkshopCustomerController@edit', 'as'  => '.edit']);
 });
@@ -29,5 +32,7 @@ Route::group(['middleware' => ['auth', 'customer'], 'as' => 'workshopsCustomer']
 // API routes of Customer
 Route::group(['prefix' => 'api/v1', 'middleware' => ['auth', 'customer']], function () {
     Route::get('workshops', 'WorkshopCustomerController@getAllWorkshops');
+    Route::get('myWorkshops', 'WorkshopCustomerController@getMyWorkshops');
+    Route::get('myWorkshops/createPDFWorkshop/{id}', 'WorkshopCustomerController@createPDFWorkshop');
 });
 

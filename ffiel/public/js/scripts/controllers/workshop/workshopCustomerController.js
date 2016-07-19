@@ -5,6 +5,29 @@
 'use strict';
 
 angular.module('FFIEL')
+    .controller('MyWorkshopsController', function ($scope, workshopCustomerServices, Notification, paypalServices, $window) {
+        $scope.workshop = {};
+        $scope.workshops = [];
+
+        $scope.entranferencia = false;
+        $scope.loading = true;
+
+        workshopCustomerServices.myWorkshops()
+            .success(function(data){
+                $scope.workshops=data;
+                $scope.loading = false;
+                console.log(data);
+            })
+            .error(function(error){
+                Notification.error(
+                    {
+                        message: '<b>Error notificación</b>',
+                        title: 'Error al cargando información',
+                        delay: 5000
+                    });
+                $scope.loading = false;
+            });
+    })
     .controller('WorkshopsController', function ($scope, workshopCustomerServices, Notification, paypalServices, $window) {
         $scope.workshop = {};
         $scope.workshops = [];

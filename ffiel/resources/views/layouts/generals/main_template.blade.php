@@ -9,17 +9,16 @@
     }
 </style>
 <body>
-
     {!! csrf_field() !!}
     @if (! Auth::guest())
         <main>
             <div class="row">
                 @include('layouts.generals.menu.general_menu')
             </div>
+            @include('layouts.generals.errors')
+            @include('layouts.generals.sessionMessage')
             <div class="row">
                 <div class="col l12">
-                    @include('layouts.generals.errors')
-                    @include('layouts.generals.sessionMessage')
                     @include('layouts.generals.content_template')
                 </div>
             </div>
