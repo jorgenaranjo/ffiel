@@ -2,7 +2,7 @@
     <div class="col s12 m12 l6" data-dir-paginate="workshop in workshops | orderBy:sortKey:reverse | filter:searchInput |itemsPerPage:8">
         <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" ng-src="@{{ imageMIME(workshop.image) }}" alt="@{{ workshop.name }}">
+                <img class="activator" ng-src="@{{ workshop.image }}" alt="@{{ workshop.name }}">
             </div>
             <div class="card-content">
                 <div class="row">
@@ -39,7 +39,7 @@
                 <h4 class="card-title grey-text text-darken-4"><span ng-bind-html='toTrustedHTML( workshop.name )'></span><i class="material-icons right">close</i></h4>
                 <div class="row">
                     <div class="col s3 m3 l2">
-                        <img class="activator img-responsive circle" ng-src="@{{ imageMIME(workshop.speaker_image) }}" alt="@{{ workshop.name }}"
+                        <img class="activator img-responsive circle" ng-src="@{{ workshop.speaker_image }}" alt="@{{ workshop.name }}"
                              style="max-width: 60px; max-height: 60px">
                     </div>
                     <div class="col s9 m9 l10">
