@@ -66,7 +66,7 @@ class PaypalController extends Controller {
         $item1 = new Item();
         $item1->setName($request->get('name'))
             ->setDescription($request->get('name'))
-            ->setCurrency('MXN')
+            ->setCurrency('USD')
             ->setQuantity(1)
             ->setTax(0.0)
             ->setPrice($request->get('price'));
@@ -79,7 +79,7 @@ class PaypalController extends Controller {
             ->setSubtotal($request->get('price'));
 
         $amount = new Amount();
-        $amount->setCurrency('MXN')
+        $amount->setCurrency('USD')
             ->setTotal($request->get('price'))
             ->setDetails($details);
 
@@ -107,6 +107,8 @@ class PaypalController extends Controller {
                 'creditCardNumber' => $payment->getPayer()->getFundingInstruments()[0]->credit_card->number
             ]);
 
+            \DB::table('workshops')->where('id', $request->get('id'))->decrement('available');
+
             $now = date('Y-m-d H:i:s');
             \DB::table('user_workshop')->insert([
                 'user_id' => \Auth::user()->id,
@@ -115,6 +117,14 @@ class PaypalController extends Controller {
             ]);
 
         } catch (\PayPal\Exception\PayPalConnectionException $ex) {
+            if (Config::get('app.debug')) {
+                echo "Exception: " . $ex->getMessage() . PHP_EOL;
+                echo $ex->getCode(); // Prints the Error Code
+                echo $ex->getData(); // Prints the detailed error message
+                die($ex);
+            } else {
+                die('Some error occurred, sorry for inconvenient');
+            }
             return \Response::json(['error' => "Ha ocurrido un error al intentar procesar el pago con tu tarjeta de cr&eacute;dito, por favor valida que los datos sean correctos."], 500);
         }
 
@@ -239,6 +249,8 @@ class PaypalController extends Controller {
                 'payment_method' => 'Cuenta Paypal',
                 'creditCardNumber' => $result->getCart()
             ]);
+
+            \DB::table('workshops')->where('id', $workshop->id)->decrement('available');
 
             $now = date('Y-m-d H:i:s');
             \DB::table('user_workshop')->insert([

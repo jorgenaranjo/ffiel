@@ -10,6 +10,9 @@
                 padding-right: 10px;
                 margin-left: 20px;
                 margin-right: 20px;
+                background-image: url("/images/ffielNegro500.png");
+                background-repeat: no-repeat;
+                background-position: 100% 50%;
             }
             .page-break {
                 page-break-after: always;
@@ -34,21 +37,27 @@
             <center><h1>{!! $workshop['name'] !!}</h1></center>
             <table width="100%">
                 <tr>
-                    <th width="35%"><h4>Nombre tallerista:</h4></th>
-                    <td><h4>{{ $workshop['speaker_name'] }}</h4></td>
+                    <th width="35%"><h5>Nombre tallerista:</h5></th>
+                    <td><h5>{{ $workshop['speaker_name'] }}</h5></td>
                 </tr>
                 <tr>
-                    <th><h4>Nombre asistente:</h4></th>
-                    <td><h4>{{ $user['name'] }}</h4></td>
+                    <th><h5>Nombre asistente:</h5></th>
+                    <td><h5>{{ $user['name'] }}</h5></td>
                 </tr>
                 <tr>
-                    <th><h4>Fecha de taller:</h4></th>
+                    <th><h5>Fecha de taller:</h5></th>
                     <td>
-                        <h4>{{ $workshop['startDate'] }} y {{ $workshop['endDate'] }}</h4>
+                        <h5>{{ $workshop['startDate'] }} {{ $workshop['hours'] }} y {{ $workshop['endDate'] }} {{ $workshop['hours'] }}</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <th><h5>Referenc&iacute;a de pago:</h5></th>
+                    <td>
+                        <h5>{{ $payment[0]['transaction_number'] }}</h5>
                     </td>
                 </tr>
             </table>
-            <p style="font-size: 8px; text-align: justify">{!!  $workshop['description'] !!}</p>
+            <p style="font-size: 5px; text-align: justify">{!!  $workshop['description'] !!}</p>
         </div>
     </body>
 </html>

@@ -14,7 +14,7 @@ return array(
 
     //Produccion
 
-    //'client_id' => 'AbTxwKeqgiuqwecEd-DVAQb4gwyv56ja5fiwg6EJOmlACMr0s23f8HdLTY0Iqetz6K2ErXjGz6OcgwhM',
+    //'client_id' => 'AWnRwoUx3s7Uwz4EySi9-6vSWQVChRz-BQeXKjgzuz0u7CBD5ix24UP1yZ8FoBU1XxPW_pvHIaiY9yO8',
     //'secret' => 'EAwnAxjh_G363ht4h3JodPSUsufUPOywF_8sCZatCf7rsSyvT_KdkcUmOBb0wfU-zXAsYRr-Xs0ExvCJ',
 
 

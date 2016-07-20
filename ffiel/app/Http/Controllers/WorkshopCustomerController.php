@@ -25,7 +25,7 @@ class WorkshopCustomerController extends Controller
     public function getAllWorkshops(){
         $event_id = Event::where('active', true)->orderBy('id', 'desc')->first();
         $workshops_by_user = User::find(\Auth::user()->id)->workshops()->where('event_id', $event_id->id)->lists('workshops.id');
-        return Event::find($event_id->id)->workshops()->where('active', true)->whereNotIn('id', $workshops_by_user)->get();
+        return Event::find($event_id->id)->workshops()->where('active', true)->where('workshops.available','>', 0 )->whereNotIn('id', $workshops_by_user)->get();
     }
 
 
@@ -44,7 +44,8 @@ class WorkshopCustomerController extends Controller
     public function createPDFWorkshop($workshopI_id){
         $workshop = Workshop::find($workshopI_id);
         $user = User::find(\Auth::user()->id);
-        $view =  \View::make('templates.pdf.workshopCustomer', compact('workshop', 'user'))->render();
+        $payment = User::find(\Auth::user()->id)->payments()->where('workshop_id', $workshopI_id)->get();
+        $view =  \View::make('templates.pdf.workshopCustomer', compact('workshop', 'user', 'payment'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         return $pdf->stream('templates.pdf.workshopCustomer');

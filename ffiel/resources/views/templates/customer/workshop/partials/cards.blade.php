@@ -11,8 +11,8 @@
                             <div class="center promo promo-example">
                                 <i class="material-icons">date_range</i>
                                 <p class="promo-caption">{{ trans('workshop.date') }}</p>
-                                <p class="light center">@{{ workshop.startDate }} de 10 am a 14 pm</p>
-                                <p class="light center">@{{ workshop.endDate }} de 10 am a 14 pm</p>
+                                <p class="light center">@{{ workshop.startDate }} @{{ workshop.hours }}</p>
+                                <p class="light center">@{{ workshop.endDate }} @{{ workshop.hours }}</p>
                             </div>
                         </div>
                         <div class="col s4">
@@ -59,8 +59,8 @@
                         <tbody>
                         <tr>
                             <td>
-                                <p>@{{ workshop.startDate }} de 10 am a 14 pm</p>
-                                <p>@{{ workshop.endDate }} de 10 am a 14 pm</p>
+                                <p>@{{ workshop.startDate }} @{{ workshop.hours }}</p>
+                                <p>@{{ workshop.endDate }} @{{ workshop.hours }}</p>
                             </td>
                             <td>@{{ workshop.quantity }}</td>
                             <td>$ @{{ workshop.price }}</td>
