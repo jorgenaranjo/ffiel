@@ -23,7 +23,7 @@
         <br>
         <div class="row">
             <div class="col l4 s12 m12">
-                <img class="img-responsive center" ng-src="@{{ imageMIME(workshop.image) }}" alt="@{{ workshop.name }}"
+                <img class="img-responsive center" ng-src="@{{ workshop.image }}" alt="@{{ workshop.name }}"
                         style="width:200px; heigth:200px">
             </div>
             <div class="col l8 s12 m12">
@@ -112,7 +112,7 @@
         </div>
         <div class="row">
             <div class="col l4 s12 m12">
-                <img class="img-responsive center" ng-src="@{{ imageMIME(workshop.image) }}" alt="@{{ workshop.name }}"
+                <img class="img-responsive center" ng-src="@{{ workshop.image }}" alt="@{{ workshop.name }}"
                      style="width:200px; heigth:200px">
             </div>
             <div class="col l8 s12 m12">
