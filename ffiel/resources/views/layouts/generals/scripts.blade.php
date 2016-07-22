@@ -33,11 +33,15 @@
 
 <!-- If is Customer -->
 @if(Auth::user()->type == 'customer')
+    <script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js"></script>
     <!-- Factories -->
     <script src="{{ asset('js/scripts/services/workshop/workshopCustomerServices.js') }}"></script>
     <script src="{{ asset('js/scripts/services/paypal/paypalServices.js') }}"></script>
     <!-- Controllers -->
     <script src="{{ asset('js/scripts/controllers/workshop/workshopCustomerController.js') }}"></script>
+    <!-- EXtras -->
+
+
 @endif
 
 
@@ -47,6 +51,7 @@
         $(".button-collapse").sideNav();
         $('.slider').slider({height: 700});
     });
-
-
 </script>
+
+@yield('extra_js')
+
