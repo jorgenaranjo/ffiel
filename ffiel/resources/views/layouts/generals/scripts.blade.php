@@ -33,7 +33,8 @@
 
 <!-- If is Customer -->
 @if(Auth::user()->type == 'customer')
-    <script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
     <!-- Factories -->
     <script src="{{ asset('js/scripts/services/workshop/workshopCustomerServices.js') }}"></script>
     <script src="{{ asset('js/scripts/services/paypal/paypalServices.js') }}"></script>

@@ -25,7 +25,8 @@ class WorkshopCustomerController extends Controller
     public function getAllWorkshops(){
         $event_id = Event::where('active', true)->orderBy('id', 'desc')->first();
         $workshops_by_user = User::find(\Auth::user()->id)->workshops()->where('event_id', $event_id->id)->lists('workshops.id');
-        return Event::find($event_id->id)->workshops()->where('active', true)->where('workshops.available','>', 0 )->whereNotIn('id', $workshops_by_user)->get();
+        return Event::find($event_id->id)->workshops()->where('active', true)->orderBy('id', 'desc')
+            ->where('workshops.available','>', 0 )->whereNotIn('id', $workshops_by_user)->get();
     }
 
 
