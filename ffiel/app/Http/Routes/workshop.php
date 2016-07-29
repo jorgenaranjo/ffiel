@@ -4,7 +4,7 @@
 // Views routes
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::resource('workshops', 'WorkshopAdminController',
-        ['only' => ['index', 'create', 'edit']]);
+        ['only' => ['index', 'create', 'edit', 'show']]);
 });
 
 
@@ -14,6 +14,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['auth', 'admin']], function
     Route::put('workshops', 'WorkshopAdminController@update');
     Route::delete('workshops/{id}', 'WorkshopAdminController@destroy');
     Route::get('workshops', 'WorkshopAdminController@getAllWorkshops');
+    Route::get('workshops-event', 'WorkshopAdminController@getEventWorkshops');
 
 });
 

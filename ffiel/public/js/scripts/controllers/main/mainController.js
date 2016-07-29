@@ -13,16 +13,25 @@ angular.module('FFIEL')
     $scope.urlId = $location.absUrl().split('/')[$location.absUrl().split('/').length-1];
 
     $scope.imageMIME = function(image){
-        var MIME = "";
-        try{
-            if(image.charAt(0)=='/'){
-                return "data:image/jpeg;base64," + image;
-            }else if(image.charAt(0)=='i'){
-                return "data:image/png;base64," + image;
-            }
-        }catch(e){
-            return "";
-        }
+        if (typeof(image) != 'undefined') {
+            var result = image.search('/images');
+            var MIME = "";
+            if (result == -1){
+                try{
+                    if(image.charAt(0)=='/'){
+                        return "data:image/jpeg;base64," + image;
+                    }else if(image.charAt(0)=='i'){
+                        return "data:image/png;base64," + image;
+                    }else{
+                        return image
+                    }
+                }catch(e){
+                    return "";
+                }
+            }else{
+                return image
+            }  
+        };
     }
 
     $scope.toTrustedHTML = function( html ){

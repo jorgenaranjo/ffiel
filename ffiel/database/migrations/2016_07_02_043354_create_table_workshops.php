@@ -16,8 +16,8 @@ class CreateTableWorkshops extends Migration
             $table->increments('id');
             $table->string('name');
             $table->date('startDate');
-            $table->integer('quantity');
-            $table->integer('available');
+            $table->integer('quantity');//no se edita se muestra en la vista de creación, readonly
+            $table->integer('available');//no se edita, readonly
             $table->string('street');
             $table->string('noExt');
             $table->string('city');
@@ -36,7 +36,6 @@ class CreateTableWorkshops extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
         \DB::table('workshops')->insert([
             [
                 'name' => 'Taller de retrato',
