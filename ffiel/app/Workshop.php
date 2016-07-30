@@ -15,7 +15,7 @@ class Workshop extends Model
     protected $fillable = ['name', 'startDate', 'quantity', 'street', 'noExt',
                            'city', 'state', 'description', 'speaker_name',
                            'speaker_image', 'image', 'endDate', 'price', 'code',
-                           'active'];
+                           'active', 'linkpaypalbutton'];
 
     public function users()
     {
