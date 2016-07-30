@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col m12 l12 center" ng-hide="transActiva">
                 <h5>Cuenta de paypal</h5>
-                <a data-ng-click="postPaymentPaypalAccount(workshop)" disabled="disabled">
+                <a data-ng-click="getLink(workshop)" disabled="disabled">
                     <img src="{{ asset('/images/paypal-logo.png') }}" class="img-responsive" style="max-height: 170px; max-width: 200px">
                 </a>
             </div>

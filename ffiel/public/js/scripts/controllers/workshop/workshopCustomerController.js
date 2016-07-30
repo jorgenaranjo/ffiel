@@ -120,9 +120,10 @@ angular.module('FFIEL')
             Stripe.card.createToken(tokenParams, stripeResponseHandler);
         }
 
-        $scope.postPaymentPaypalAccount = function(workshop){
+        $scope.getLink = function(workshop){
             $scope.transActiva = true;
-            paypalServices.postPaymentPaypalAccount(workshop)
+            $window.location.href = workshop.linkpaypalbutton;
+            /*paypalServices.postPaymentPaypalAccount(workshop)
                 .success(function(data){
                     $window.location.href = data;
                     $scope.transActiva = false;
@@ -131,7 +132,7 @@ angular.module('FFIEL')
                 })
                 .error(function(error){
                     $scope.transActiva = false;
-                });
+                });*/
         }
 
         $scope.submitForm = function(isValid) {
