@@ -17,6 +17,8 @@ return array(
     //'client_id' => 'AWnRwoUx3s7Uwz4EySi9-6vSWQVChRz-BQeXKjgzuz0u7CBD5ix24UP1yZ8FoBU1XxPW_pvHIaiY9yO8',
     //'secret' => 'EAwnAxjh_G363ht4h3JodPSUsufUPOywF_8sCZatCf7rsSyvT_KdkcUmOBb0wfU-zXAsYRr-Xs0ExvCJ',
 
+    //'client_id' => 'Aa4LX9I7z_w6Dz8l0g0s-y_yde5nuHQT7kfKZC7psMKKJY_kywfnyTM5FMTHKZ39e4b0Kz1rvAN5pZi7',
+    //'secret' => 'EAjBK3V2iyh58OP_ZqzGmJn1CTqmZWQWT4qpmm_n9t-54UY8bhMd8HTgeJjKS0VizDwGZp2rbYESyXyg',
 
     // set your paypal credential
 

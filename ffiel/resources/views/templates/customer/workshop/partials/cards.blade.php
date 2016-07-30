@@ -1,28 +1,28 @@
 <div class="row">
-    <div class="col s12 m12 l6" data-dir-paginate="workshop in workshops | orderBy:sortKey:reverse | filter:searchInput |itemsPerPage:8">
+    <div class="col s12 m12 l6" ng-repeat="workshop in workshops">
         <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" ng-src="@{{ imageMIME(workshop.image) }}"  alt="@{{ workshop.name }}">
+                <img class="activator img-responsive" ng-src="@{{ imageMIME(workshop.image) }}"  alt="@{{ workshop.name }}" style="max-width: 700px; max-height: 500px;">
             </div>
             <div class="card-content">
                 <div class="row">
                     <div class="row">
-                        <div class="col s4">
+                        <div class="col s12 m4 l4">
                             <div class="center promo promo-example">
                                 <i class="material-icons">date_range</i>
                                 <p class="promo-caption">{{ trans('workshop.date') }}</p>
-                                <p class="light center">@{{ workshop.startDate }} @{{ workshop.hours }}</p>
-                                <p class="light center">@{{ workshop.endDate }} @{{ workshop.hours }}</p>
+                                <p class="light center"><b>@{{ workshop.startDate }} @{{ workshop.hours }}</b></p>
+                                <p class="light center"><b>@{{ workshop.endDate }} @{{ workshop.hours }}</b></p>
                             </div>
                         </div>
-                        <div class="col s4">
+                        <div class="col s12 m4 l4">
                             <div class="center promo promo-example">
                                 <i class="material-icons">person</i>
                                 <p class="promo-caption">{{ trans('workshop.quantity') }}</p>
                                 <p class="light center">@{{ workshop.quantity }}</p>
                             </div>
                         </div>
-                        <div class="col s4">
+                        <div class="col s12 m4 l4">
                             <div class="center promo promo-example">
                                 <p class="promo-caption">{{ trans('workshop.price') }}</p>
                                 <h3 class="light center" style="color: #68266D;">$ @{{ workshop.price }}</h3>
@@ -59,8 +59,8 @@
                         <tbody>
                         <tr>
                             <td>
-                                <p>@{{ workshop.startDate }} @{{ workshop.hours }}</p>
-                                <p>@{{ workshop.endDate }} @{{ workshop.hours }}</p>
+                                <p><b>@{{ workshop.startDate }} @{{ workshop.hours }}</b></p>
+                                <p><b>@{{ workshop.endDate }} @{{ workshop.hours }}</b></p>
                             </td>
                             <td>@{{ workshop.quantity }}</td>
                             <td>$ @{{ workshop.price }}</td>

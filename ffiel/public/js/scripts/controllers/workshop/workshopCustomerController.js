@@ -33,6 +33,7 @@ angular.module('FFIEL')
         $scope.workshops = [];
 
         $scope.entranferencia = false;
+        $scope.transActiva = false;
         $scope.loading = true;
         workshopCustomerServices.getAllWorkshop()
             .success(function(data){
@@ -66,41 +67,70 @@ angular.module('FFIEL')
 
         $scope.postPaymentCreditCard = function(workshop){
             $scope.entranferencia = true;
-            paypalServices.postPaymentCreditCard(workshop)
-                .success(function(data){
-                    $scope.tranferencia = data;
-                    $('#paymentCreditCard').closeModal();
-                    $('#tdcExitosa').openModal();
-                    Notification.success({message: 'Transacci&oacute;n exitosa.', delay: 5000});
-                    $scope.cc_type ='';
-                    $scope.cc_number ='';
-                    $scope.cc_month ='';
-                    $scope.cc_year ='';
-                    $scope.cc_ccv ='';
-                    $scope.cc_name ='';
-                    $scope.cc_lastName ='';
 
-                })
-                .error(function(error){
+            var stripeResponseHandler, tokenParams;
+            tokenParams = {
+                "number": workshop.cc_number,
+                "name": workshop.cc_name,
+                "exp_year": workshop.cc_year,
+                "exp_month": workshop.cc_month,
+                "cvc": workshop.cc_ccv
+            };
+
+
+            stripeResponseHandler = function(status, response) {
+                if(status == 200){
+                    workshop.token = response.id;
+                    workshop.cc_month ='';
+                    workshop.cc_year ='';
+                    workshop.cc_ccv ='';
+                    paypalServices.postPaymentCreditCard(workshop)
+                        .success(function(data){
+                            $scope.tranferencia = data;
+                            $('#paymentCreditCard').closeModal();
+                            $('#tdcExitosa').openModal();
+                            Notification.success({message: 'Transacci&oacute;n exitosa.', delay: 5000});
+                            $scope.cc_number ='';
+                            $scope.cc_month ='';
+                            $scope.cc_year ='';
+                            $scope.cc_ccv ='';
+                            $scope.cc_name ='';
+                            $scope.entranferencia = false;
+                        })
+                        .error(function(error){
+                            $scope.entranferencia = false;
+                            Notification.error({
+                                message: '<b>Error:</b> </br>'+error.error,
+                                title: '<b>Error con transacci&oacute;n</b>',
+                                delay: 20000
+                            });
+                        });
+                }else{
                     $scope.entranferencia = false;
-                    Notification.error({
-                        message: '<b>Error:</b> </br>'+error.error,
-                        title: '<b>Error con transacci&oacute;n</b>',
-                        delay: 20000
-                    });
-                });
+                     Notification.error({
+                     message: '<b>Error:</b> </br>'+response.error.message,
+                     title: '<b>Error con transacci&oacute;n</b>',
+                     delay: 20000
+                     });
+                }
+
+            };
+
+            /* Tokenizar una tarjeta en Stripe */
+            Stripe.card.createToken(tokenParams, stripeResponseHandler);
         }
 
         $scope.postPaymentPaypalAccount = function(workshop){
+            $scope.transActiva = true;
             paypalServices.postPaymentPaypalAccount(workshop)
                 .success(function(data){
-                    console.log(data);
                     $window.location.href = data;
+                    $scope.transActiva = false;
                     $('#paymentCreditCard').closeModal();
                     Notification.success({message: 'Redireccionando a paypal', delay: 5000});
                 })
                 .error(function(error){
-                    console.log(error);
+                    $scope.transActiva = false;
                 });
         }
 
