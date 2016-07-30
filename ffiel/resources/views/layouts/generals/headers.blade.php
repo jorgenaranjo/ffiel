@@ -25,6 +25,7 @@
 <link href="{{ asset('bower_components/angular-advanced-searchbox/dist/angular-advanced-searchbox.min.css') }}" rel="stylesheet">
 <link href="{{ asset('bower_components/angular-ui-notification/dist/angular-ui-notification.min.css') }}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="{{ asset('css/modal_edit.css') }}" rel="stylesheet">
 
 <style>
     main {

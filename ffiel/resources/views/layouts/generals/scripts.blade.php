@@ -28,6 +28,8 @@
     <script src="{{ asset('js/scripts/services/workshop/workshopAdminServices.js') }}"></script>
     <!-- Controllers -->
     <script src="{{ asset('js/scripts/controllers/workshop/workshopAdminController.js') }}"></script>
+    <!-- CkEditor -->
+    <script src="{{ asset('/vendors/ckeditor/ckeditor.js') }}"></script>
 
 @endif
 

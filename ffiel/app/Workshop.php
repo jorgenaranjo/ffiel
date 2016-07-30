@@ -15,7 +15,8 @@ class Workshop extends Model
     protected $fillable = ['name', 'startDate', 'quantity', 'street', 'noExt',
                            'city', 'state', 'description', 'speaker_name',
                            'speaker_image', 'image', 'endDate', 'price', 'code',
-                           'active'];
+                           'active', 'available', 'speaker_occupation', 'event_id',
+                           'hours'];
 
     public function users()
     {

@@ -22,7 +22,7 @@
 @endsection
 
 @section('buttons')
-
+    <a class="waves-effect light-green btn" href="{{ route('workshops.create') }}"><i class="material-icons left">playlist_add</i>{{ trans('workshop.create') }}</a>
 @endsection
 
 @section('body_page')
@@ -35,5 +35,7 @@
                     boundary-links="true" >
             </dir-pagination-controls>
         </div>
+        @include('templates.admin.workshop.partials.delete')
+        @include('templates.admin.workshop.partials.edit')
     </div>
 @endsection

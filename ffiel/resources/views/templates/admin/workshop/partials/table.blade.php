@@ -21,13 +21,13 @@
         <td>
             <div class="row">
                 <div class="col s4 m4 l4 ">
-                    <a data-ng-click=""><i class="fa fa-eye"></i></a>
+                    <a href="{{ url('workshops/') }}/@{{ workshop.id }}"><i class="fa fa-eye"></i></a>
                 </div>
                 <div class="col s4 m4 l4 ">
-                    <a data-ng-click=""><i class="fa fa-pencil-square-o"></i></a>
+                    <a data-ng-click="updateworkshop(workshop)"><i class="fa fa-pencil-square-o"></i></a>
                 </div>
                 <div class="col s4 m4 l4">
-                    <a data-ng-click=""><i class="fa fa-trash"></i></a>
+                    <a data-ng-click="deleteworkshop(workshop)"><i class="fa fa-trash"></i></a>
                 </div>
             </div>
         </td>
