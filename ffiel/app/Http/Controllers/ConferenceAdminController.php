@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Workshop;
 use App\Event;
+use App\Conference;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class WorkshopAdminController extends Controller
+class ConferenceAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +18,14 @@ class WorkshopAdminController extends Controller
      */
     public function index()
     {
-        return view('templates.admin.workshop.index');
+        return view('templates.admin.conference.index');
     }
 
-
-    public function getAllWorkshops(){
-        return Workshop::all();
+    public function getAllConferences(){
+        return Conference::all();
     }
 
-    public function getEventWorkshops(){
+    public function getEventConferences(){
         return Event::all();
     }
 
@@ -37,10 +36,8 @@ class WorkshopAdminController extends Controller
      */
     public function create()
     {
-        return view('templates.admin.workshop.create');
+        return view('templates.admin.conference.create');
     }
-
-    
 
     /**
      * Store a newly created resource in storage.
@@ -50,19 +47,15 @@ class WorkshopAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //echo asset("/images/SLIDER/1.png");
-        //$request->input[]
-        //dd($request->all());
         if (!is_array($request->all())) {
             return ['error' => 'request must be an array'];
         }
         try {
-            $workshop = Workshop::create($request->all());
-            return \Response::json(['created' => true, 'workshop_id' => $workshop->id], 200);
+            $conference = Conference::create($request->all());
+            return \Response::json(['created' => true, 'conference_id' => $conference->id], 200);
         } catch (Exception $e) {
             return \Response::json(['created' => false, 'error' => $e], 500);
         }
-        
     }
 
     /**
@@ -73,9 +66,9 @@ class WorkshopAdminController extends Controller
      */
     public function show($id)
     {
-        $workshop = Workshop::find($id);
+        $conference = Conference::find($id);
 
-        return view('templates.admin.workshop.show',compact('workshop'));
+        return view('templates.admin.conference.show',compact('conference'));
     }
 
     /**
@@ -99,11 +92,11 @@ class WorkshopAdminController extends Controller
     public function update(Request $request)
     {
         try{
-            $workshop = Workshop::find($request->input('id'));
-            $workshop->update($request->all());
+            $conference = Conference::find($request->input('id'));
+            $conference->update($request->all());
             return ['updated' => true];
         }catch (Exception $e){
-            \Log::info('Error creating Workshop: '.$e);
+            \Log::info('Error update Conference: '.$e);
             return \Response::json(['created' => false], 500);
         }
     }
@@ -116,10 +109,10 @@ class WorkshopAdminController extends Controller
      */
     public function destroy($id)
     {
-        $workshop = Workshop::find($id);
-        $workshop->active = false;
-        $workshop->save();
-        Workshop::destroy($id);
+        $conference = Conference::find($id);
+        $conference->active = false;
+        $conference->save();
+        Conference::destroy($id);
         return ['deleted' => true];
     }
 }

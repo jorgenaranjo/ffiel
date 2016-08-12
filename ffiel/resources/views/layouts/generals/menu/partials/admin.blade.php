@@ -1,7 +1,7 @@
 <ul class="right hide-on-med-and-down">
     
         <li><a href="{{ route('workshops.index') }}"><i class="material-icons left">camera</i> {{ trans('menus.workshops') }}</a></li>
-        <li><a href="#!"><i class="material-icons left">record_voice_over</i> {{ trans('menus.conferences') }}</a></li>
+        <li><a href="{{ route('conferences.index') }}"><i class="material-icons left">record_voice_over</i> {{ trans('menus.conferences') }}</a></li>
         <li><a href="#!"><i class="material-icons left">payment</i> {{ trans('menus.payments') }}</a></li>
         <li><a href="#!"><i class="medium material-icons left">supervisor_account</i> {{ trans('menus.users') }}</a></li>
 
@@ -17,7 +17,7 @@
     <li><a href="#!"><h5>{{ Auth::user()->name }}</h5></a></li>
     
         <li><a href="{{ route('workshops.index') }}"><i class="material-icons left">camera</i> {{ trans('menus.workshops') }}</a></li>
-        <li><a href="#!"><i class="material-icons left">record_voice_over</i> {{ trans('menus.conferences') }}</a></li>
+        <li><a href="{{ route('conferences.index') }}"><i class="material-icons left">record_voice_over</i> {{ trans('menus.conferences') }}</a></li>
         <li><a href="#!"><i class="material-icons left">payment</i> {{ trans('menus.payments') }}</a></li>
         <li><a href="#!"><i class="medium material-icons left">supervisor_account</i> {{ trans('menus.users') }}</a></li>
         <li><a href="{{ route('logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('menus.logout') }}</a></li>
