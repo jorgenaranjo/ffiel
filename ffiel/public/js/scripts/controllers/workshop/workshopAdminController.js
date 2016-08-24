@@ -63,7 +63,7 @@ angular.module('FFIEL')
         };
 
         $scope.save = function(){
-            if($scope.file_workshop.filesize <= 948475 && !$scope.file_speaker.filesize <= 948475){
+            if($scope.file_workshop.filesize <= 948475 && $scope.file_speaker.filesize <= 948475){
                 $scope.workshopCreate.image = $scope.file_workshop.base64; 
                 $scope.workshopCreate.speaker_image = $scope.file_speaker.base64; 
                 $scope.workshopCreate.available = $scope.workshopCreate.quantity; 
