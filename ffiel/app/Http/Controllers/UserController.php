@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
 use App\User;
-use App\Workshop;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class WorkshopCustomerController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,38 +17,11 @@ class WorkshopCustomerController extends Controller
      */
     public function index()
     {
-        return view('templates.customer.workshop.index');
-    }
-
-    public function getAllWorkshops(){
-        $event_id = Event::where('active', true)->orderBy('id', 'desc')->first();
-        $workshops_by_user = User::find(\Auth::user()->id)->workshops()->where('event_id', $event_id->id)->lists('workshops.id');
-        return Event::find($event_id->id)->workshops()->where('active', true)->orderBy('id', 'desc')
-            ->where('workshops.available','>', 0 )->whereNotIn('id', $workshops_by_user)->get();
+        $users = User::paginate(25);
+        return view('templates.admin.users.index', compact('users'));
     }
 
 
-    public function indexMyWorkshops()
-    {
-        return view('templates.customer.myWorkshop.index');
-    }
-
-    public function getMyWorkshops(){
-        $event_id = Event::where('active', true)->orderBy('id', 'desc')->first();
-        $workshops_by_user = User::find(\Auth::user()->id)->workshops()->where('event_id', $event_id->id)->get();
-        return $workshops_by_user;
-    }
-
-
-    public function createPDFWorkshop($workshopI_id){
-        $workshop = Workshop::find($workshopI_id);
-        $user = User::find(\Auth::user()->id);
-        $payment = User::find(\Auth::user()->id)->payments()->where('workshop_id', $workshopI_id)->get();
-        $view =  \View::make('templates.pdf.workshopCustomer', compact('workshop', 'user', 'payment'))->render();
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view);
-        return $pdf->stream('templates.pdf.workshopCustomer');
-    }
     /**
      * Show the form for creating a new resource.
      *

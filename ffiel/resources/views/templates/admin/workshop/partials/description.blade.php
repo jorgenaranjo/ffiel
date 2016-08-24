@@ -34,8 +34,13 @@
 				@foreach ($workshop->users as $user) 
 					<tr> 
 						<td>{{$user->name}}</td>
-						<td>{{$user->payments->where('workshop_id', $workshop->id)[0]->transaction_number}}</td>
-						<td>{{$user->payments->where('workshop_id', $workshop->id)[0]->date}}</td>
+						@if($workshop->users->count() > 1)
+							<td>{{$user->payments->where('workshop_id', $workshop->id)[0]->transaction_number}}</td>
+							<td>{{$user->payments->where('workshop_id', $workshop->id)[0]->date}}</td>
+						@else
+							<td>{{$user->payments->where('workshop_id', $workshop->id)[1]->transaction_number}}</td>
+							<td>{{$user->payments->where('workshop_id', $workshop->id)[1]->date}}</td>
+						@endif
 					</tr>
 				@endforeach
 			</tbody>

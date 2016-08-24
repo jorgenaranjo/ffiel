@@ -37,11 +37,16 @@
 
 <!-- If is Customer -->
 @if(Auth::user()->type == 'customer')
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
     <!-- Factories -->
     <script src="{{ asset('js/scripts/services/workshop/workshopCustomerServices.js') }}"></script>
     <script src="{{ asset('js/scripts/services/paypal/paypalServices.js') }}"></script>
     <!-- Controllers -->
     <script src="{{ asset('js/scripts/controllers/workshop/workshopCustomerController.js') }}"></script>
+    <!-- EXtras -->
+
+
 @endif
 
 
@@ -51,6 +56,7 @@
         $(".button-collapse").sideNav();
         $('.slider').slider({height: 700});
     });
-
-
 </script>
+
+@yield('extra_js')
+
