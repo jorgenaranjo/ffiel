@@ -26,8 +26,10 @@
 @if(Auth::user()->type == 'admin')
     <!-- Factories -->
     <script src="{{ asset('js/scripts/services/workshop/workshopAdminServices.js') }}"></script>
+    <script src="{{ asset('js/scripts/services/conference/conferenceAdminServices.js') }}"></script>
     <!-- Controllers -->
     <script src="{{ asset('js/scripts/controllers/workshop/workshopAdminController.js') }}"></script>
+    <script src="{{ asset('js/scripts/controllers/conference/conferenceAdminController.js') }}"></script>
     <!-- CkEditor -->
     <script src="{{ asset('/vendors/ckeditor/ckeditor.js') }}"></script>
 

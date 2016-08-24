@@ -14,6 +14,7 @@
 require __DIR__ . '/Routes/auth.php';
 require __DIR__ . '/Routes/workshop.php';
 require __DIR__ . '/Routes/paypal.php';
+require __DIR__ . '/Routes/conference.php';
 //require __DIR__ . '/Routes/conekta.php';
 require __DIR__ . '/Routes/stripe.php';
 require __DIR__ . '/Routes/user.php';
