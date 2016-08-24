@@ -64,7 +64,7 @@ angular.module('FFIEL')
         };
 
         $scope.save = function() {
-            if (!($scope.file_conference.filesize >= 948475) && !($scope.file_speaker.filesize >= 948475)) {
+            if ($scope.file_conference.filesize <= 948475 && $scope.file_speaker.filesize <= 948475) {
                 $scope.conferenceCreate.image = $scope.file_conference.base64; 
                 $scope.conferenceCreate.speaker_image = $scope.file_speaker.base64; 
                 $scope.conferenceCreate.available = $scope.conferenceCreate.quantity; 
