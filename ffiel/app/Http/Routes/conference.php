@@ -21,19 +21,14 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['auth', 'admin']], function
 
 // CUSTOMER
 // Views routes
-//Route::group(['middleware' => ['auth', 'customer'], 'as' => 'workshopsCustomer'], function () {
-//    Route::get('talleres/', ['uses' => 'WorkshopCustomerController@index', 'as'  => '.index']);
-//    Route::get('mistalleres/', ['uses' => 'WorkshopCustomerController@indexMyWorkshops', 'as'  => '.indexMyWorkshops']);
+Route::group(['middleware' => ['auth', 'customer'], 'as' => 'conferencesCustomer'], function () {
+    Route::get('conferencias', ['uses' => 'ConferenceCustomerController@index', 'as'  => '.index']);
 
-    //Route::post('talleres/crear', ['uses' => 'WorkshopCustomerController@create', 'as'  => '.create']);
-    //Route::get('talleres/editar/{id}', ['uses' => 'WorkshopCustomerController@edit', 'as'  => '.edit']);
-//});
+});
 
 
 // API routes of Customer
-//Route::group(['prefix' => 'api/v1', 'middleware' => ['auth', 'customer']], function () {
-//    Route::get('workshops', 'WorkshopCustomerController@getAllWorkshops');
-//    Route::get('myWorkshops', 'WorkshopCustomerController@getMyWorkshops');
-//    Route::get('myWorkshops/createPDFWorkshop/{id}', 'WorkshopCustomerController@createPDFWorkshop');
-//});
+Route::group(['prefix' => 'api/v1', 'middleware' => ['auth', 'customer']], function () {
+    Route::get('conferences', 'ConferenceCustomerController@getAllConferences');
+});
 
