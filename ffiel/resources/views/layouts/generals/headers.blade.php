@@ -31,5 +31,9 @@
     main {
         flex: 1 0 auto;
     }
+    [ng-cloak]
+    {
+        display: none !important;
+    }
 </style>
 @yield('extra_css')

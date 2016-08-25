@@ -41,11 +41,12 @@
 
     <!-- Factories -->
     <script src="{{ asset('js/scripts/services/workshop/workshopCustomerServices.js') }}"></script>
+    <script src="{{ asset('js/scripts/services/conference/conferenceCustomerServices.js') }}"></script>
     <script src="{{ asset('js/scripts/services/paypal/paypalServices.js') }}"></script>
     <!-- Controllers -->
     <script src="{{ asset('js/scripts/controllers/workshop/workshopCustomerController.js') }}"></script>
+    <script src="{{ asset('js/scripts/controllers/conference/conferenceCustomerController.js') }}"></script>
     <!-- EXtras -->
-
 
 @endif
 
